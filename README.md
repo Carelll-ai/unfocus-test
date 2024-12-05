@@ -1,4 +1,3 @@
-# unfocus-test
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +13,19 @@
     <script>
         let unfocusCount = 0;
 
-        document.addEventListener('visibilitychange', function () {
-            const statusElement = document.getElementById('status');
-            const counterElement = document.getElementById('counter');
+        // Deteksi focus dan blur pada window (browser)
+        window.addEventListener('focus', function() {
+            document.getElementById('status').innerHTML = 'Tab status: <strong>Focused</strong>';
+        });
 
-            if (document.visibilityState === 'hidden') {
-                statusElement.innerHTML = 'Tab status: <strong>Unfocused</strong>';
+        window.addEventListener('blur', function() {
+            document.getElementById('status').innerHTML = 'Tab status: <strong>Unfocused</strong>';
+            unfocusCount++;
+            document.getElementById('counter').textContent = `Unfocus count: ${unfocusCount}`;
+        });
+    </script>
+</body>
+</html>statusElement.innerHTML = 'Tab status: <strong>Unfocused</strong>';
                 unfocusCount++;
             } else {
                 statusElement.innerHTML = 'Tab status: <strong>Focused</strong>';
